@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attraction Details</title>
+  <link rel="stylesheet" href="attraction.css" />
+</head>
+<body>
+  <a href="#explore" class="back">← Back</a>
+  <div class="attraction-detail">
+    <div class="image-side" id="image"></div>
+    <div class="info-side">
+      <h1 id="title">Loading...</h1>
+      <p id="description">Please wait...</p>
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      gergeti: {
+        title: "Gergeti Trinity Church",
+        description: "Located in the Caucasus mountains, Gergeti Trinity Church is a 14th-century landmark near Stepantsminda, known for its incredible mountain views.",
+        image: "HomeImg/img3.jpg"
+      },
+      okatse: {
+        title: "Okatse Canyon",
+        description: "Okatse Canyon offers stunning views from a hanging walkway over a deep gorge, surrounded by lush Georgian forest.",
+        image: "HomeImg/img4.jpg"
+      },
+      abudelauri: {
+        title: "Abudelauri Lakes",
+        description: "A trio of colorful alpine lakes near the village of Roshka, surrounded by jagged mountains and wild beauty.",
+        image: "HomeImg/img5.jpg"
+      },
+      prometheus: {
+        title: "Prometheus Cave",
+        description: "One of Georgia’s most famous caves featuring underground rivers, dramatic stalactites, and colorful lighting.",
+        image: "HomeImg/img6.jpg"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const place = params.get('place');
+
+    if (place && data[place]) {
+      document.getElementById('title').textContent = data[place].title;
+      document.getElementById('description').textContent = data[place].description;
+      document.getElementById('image').style.backgroundImage = `url('${data[place].image}')`;
+    } else {
+      document.getElementById('title').textContent = "Attraction Not Found";
+      document.getElementById('description').textContent = "Sorry, we couldn't load the information.";
+    }
+  </script>
+</body>
+</html>

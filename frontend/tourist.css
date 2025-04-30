@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding-top: 80px;
+  }
+  
+/* Fixed Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(54, 53, 53, 0.6);
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-logo img {
+    height: 40px;
+  }
+  
+  .nav-center {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .nav-center a,
+  .nav-right a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-center a:hover,
+  .nav-right a:hover {
+    color: #00bcd4;
+  }
+  
+  .signup-btn {
+    background-color: #00bcd4;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-left: 10px;
+  }
+  
+  .signup-btn:hover {
+    background-color: #0097a7;
+  }
+  
+
+  
+  .tourist-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  .tourist-card {
+    display: flex;
+    gap: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    align-items: center;
+  }
+  
+  .tourist-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .tourist-card .info {
+    flex: 1;
+  }
+  
+  .tourist-card h3 {
+    margin: 0 0 5px;
+    font-size: 20px;
+  }
+  
+  .tourist-card .rating {
+    color: #ffa500;
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .tourist-card p {
+    margin: 5px 0;
+  }
+  

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Triply - Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Triply Logo" />
+    </div>
+    <div class="nav-center">
+      <a href="#home">Home</a>
+      <a href="#explore">Explore</a>
+      <a href="#favourites">Favourites</a>
+      <a href="#about">About Us</a>
+    </div>
+    <div class="nav-right" id="authSection">
+      <!-- This will be replaced dynamically -->
+      <a href="/login.html" id="loginLink">Login</a>
+      <a href="/signup.html" id="signupLink" class="signup-btn">Sign Up</a>
+    </div>
+    
+  </nav>
+
+  <div class="user-dropdown" id="userDropdown" style="display:none;">
+    <div id="userInitials" class="user-circle">U</div>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </div>
+  
+
+<!-- Home Section with cycling background -->
+<section id="home" class="hero-section">
+  <!-- Cycling Background -->
+  <div class="slideshow-bg" id="slideshow"></div>
+
+  <!-- Foreground Content -->
+  <div class="home-main-content">
+    <h2>Welcome to Triply!</h2>
+    <h3>Travel Simply</h3>
+    <p>Let us lead you to places where memories are made and dreams come alive.</p>
+
+    <div class="search-section">
+      <div class="input-row">
+        <select id="countryDropdown" onchange="fetchStates()">
+          <option value="">Select Country</option>
+        </select>
+        <select id="stateDropdown" onchange="fetchCities()">
+          <option value="">Select State</option>
+        </select>
+        <select id="cityDropdown">
+          <option value="">Select City</option>
+        </select>
+        <button class="search-btn" onclick="fetchDetails()">Search</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Explore Section -->
+  <section class="attractions" id="explore">
+    <h2>✨ Explore Top Attractions </h2>
+    <div class="cards">
+      <a href="attraction.html?place=gergeti" class="card" style="background-image: url('HomeImg/img3.jpg')">
+        <div class="card-text"><h3>Gergeti Trinity Church</h3><p>Cultural Monuments</p></div>
+      </a>
+      <a href="attraction.html?place=okatse" class="card" style="background-image: url('HomeImg/img4.jpg')">
+        <div class="card-text"><h3>Okatse Canyon</h3><p>Natural Wonders</p></div>
+      </a>
+      <a href="attraction.html?place=abudelauri" class="card" style="background-image: url('HomeImg/img5.jpg')">
+        <div class="card-text"><h3>Abudelauri Lakes</h3><p>Natural Wonders</p></div>
+      </a>
+      <a href="attraction.html?place=prometheus" class="card" style="background-image: url('HomeImg/img6.jpg')">
+        <div class="card-text"><h3>Prometheus Cave</h3><p>Natural Wonders</p></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Favourites Section -->
+  <section class="plain-section" id="favourites">
+    <h2>Your Favourite Destinations</h2>
+    <p>Coming soon...</p>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="plain-section" id="about">
+    <h2>About Triply</h2>
+    <p>We’re passionate explorers who believe travel should be simple and joyful. Triply helps you discover hidden gems and plan unforgettable journeys.</p>
+  </section>
+
+  <script src="script.js">
+  const images = ["HomeImg/img3.jpg","HomeImg/img4.jpg", "HomeImg/img5.jpg", "HomeImg/img6.jpg"];
+  let index = 0;
+  const slideshow = document.getElementById("slideshow");
+
+  function changeBackground() {
+    slideshow.style.backgroundImage = `url('${images[index]}')`;
+    index = (index + 1) % images.length;
+  }
+
+  setInterval(changeBackground, 4000);
+  changeBackground(); // Initial load
+
+  fetch(`/api/get-location-id?country=${countryName}&state=${stateName}&city=${cityName}`)
+  .then(res => res.json())
+  .then(data => {
+    if (data.id) {
+      window.location.href = `/search.html?location_id=${data.id}`;  // ✅ correct
+    } else {
+      alert("Location not found.");
+    }
+  })
+
+  </script>
+
+<script>
+  window.onload = () => {
+    const user = sessionStorage.getItem("username");
+    const navRight = document.querySelector(".nav-right");
+
+    if (user) {
+      const initials = user.charAt(0).toUpperCase();
+      navRight.innerHTML = `
+        <div class="user-dropdown">
+          <div class="circle-icon">${initials}</div>
+          <div class="dropdown-menu">
+            <a href="#" onclick="logout()">Logout</a>
+          </div>
+        </div>
+      `;
+    }
+  };
+
+  function logout() {
+    sessionStorage.removeItem("username");
+    window.location.href = "/home.html";
+  }
+</script>
+
+</body>
+</html>
+
+

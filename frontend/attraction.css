@@ -1,0 +1,39 @@
+/* Attraction Page */
+.attraction-detail {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .image-side {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .info-side {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .info-side h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .info-side p {
+    font-size: 1.2rem;
+  }
+  
+  a.back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #4b9bd1;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+  }

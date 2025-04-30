@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search Results - Triply</title>
+  <link rel="stylesheet" href="stylesearch.css" />
+</head>
+<body>
+
+    <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Triply Logo" />
+    </div>
+    <div class="nav-center">
+      <a href="/home.html">Home</a>
+      <a href="#">Explore</a>
+      <a href="#">Favourites</a>
+      <a href="#">About Us</a>
+    </div>
+    <div class="nav-right">
+      <a href="/login.html">Login</a>
+      <a href="/signup.html" class="signup-btn">Sign Up</a>
+    </div>
+  </nav>
+
+<!-- Options with empty href initially -->
+<div class="container">
+  <a id="touristLink" class="result-box" href="#">
+    <img src="SearchImg/search1.jpg" alt="Tourist Places">
+    <h3>Tourist Places</h3>
+    <p>Discover iconic landmarks and views.</p>
+  </a>
+
+  <a id="accommodationLink" class="result-box" href="#">
+    <img src="SearchImg/search2.jpg" alt="Accommodation">
+    <h3>Accommodation</h3>
+    <p>Find affordable stays around the area.</p>
+  </a>
+
+  <a id="guideLink" class="result-box" href="#">
+    <img src="SearchImg/search3.jpg" alt="Guide">
+    <h3>Guide</h3>
+    <p>Hire local guides to explore more deeply.</p>
+  </a>
+
+  <a id="transportLink" class="result-box" href="#">
+    <img src="SearchImg/search4.jpg" alt="Transport">
+    <h3>Transport</h3>
+    <p>Explore transport options for your destination.</p>
+  </a>
+</div>
+  </div>
+
+  <script>
+    // Read the query parameters from URL
+  
+const params = new URLSearchParams(window.location.search);
+const locationId = params.get('location_id');
+
+if (!locationId) {
+  console.error("Missing location ID.");
+} else {
+  // Build new hrefs using location_id
+  document.getElementById('touristLink').href = `tourist.html?location_id=${locationId}`;
+  document.getElementById('accommodationLink').href = `accommodation.html?location_id=${locationId}`;
+  document.getElementById('guideLink').href = `guide.html?location_id=${locationId}`;
+  document.getElementById('transportLink').href = `transport.html?location_id=${locationId}`;
+}
+
+  </script>
+  
+</body>
+</html>
+
+
+
+
+
